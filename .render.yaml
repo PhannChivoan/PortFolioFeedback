@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: portfolio-laravel
+    env: docker
+    repo: https://github.com/PhannChivoan/PortFolioFeedback
+    branch: main
+    plan: free
+    autoDeploy: true
+    buildCommand: ""
+    startCommand: ""
