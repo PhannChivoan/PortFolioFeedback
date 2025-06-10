@@ -1,6 +1,6 @@
 FROM php:8.2-apache
 
-# Install PHP extensions your app needs (adjust as needed)
+# Install PHP extensions your app needs
 RUN apt-get update && apt-get install -y \
     libzip-dev zip unzip && \
     docker-php-ext-install pdo pdo_mysql zip
@@ -23,16 +23,16 @@ RUN composer install --no-dev --optimize-autoloader
 # Set Apache to serve from public folder
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
 
-# Set permissions so Laravel can write cache and logs
+# Set permissions for storage and cache folders
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Copy entrypoint script and make sure it's executable
+# Copy entrypoint script and make it executable
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Expose port 80
 EXPOSE 80
 
-# Use the entrypoint script to run migrations and then start Apache
-CMD ["docker-entrypoint.sh"]
+# Run the entrypoint script
+CMD ["/usr/local/bin/docker-entrypoint.sh"]
