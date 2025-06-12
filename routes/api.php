@@ -2,10 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\messageController;
+use App\Http\Controllers\API\MessageController;
 
-Route::post('/addmessage',[messageController::class,'storeMessage']);
-Route::get('/getmessage',[messageController::class,'showMessage']);
+Route::post('/addmessage',[MessageController::class,'storeMessage']);
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');

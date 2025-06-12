@@ -5,17 +5,29 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 class messageController extends Controller
 {
-    public function storeMessage(Request $rq){
-        $insert = Message::create([
+    public function store(Request $rq){
+        $ins = Message::create([
             'name' => $rq->name,
             'email' => $rq->email,
-            'subject' => $rq->subject,
-            'message' => $rq->message,
+            'subject' => $rq->Subject,
+            'message' => $rq->Message   ,
         ]);
-        return response()->json(['success'=>true,'data'=>$insert]);
+        return redirect("/getmessage");
     }
     public function showMessage(){
         $message = Message::all();
-        return view('PortFolioMessage.show',['msg'=>$message]);
+        return view('Admin.message',['msg'=>$message]);
+    }
+    public function updateMessage(Request $rq){
+        $msg = Message::find($rq->id);
+        $msg->name = $rq->name;
+        $msg->email = $rq->email;
+        $msg->subject = $rq->Subject;
+        $msg->message = $rq->Message;
+        $msg->save();
+    }
+     public function deleteMessage(Request $rq){
+        $id = $rq->id;
+        Message::destroy($id);
     }
 }
