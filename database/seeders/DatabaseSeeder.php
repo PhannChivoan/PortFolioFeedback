@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        if (!User::where('email', 'user@example.com')->exists()) {
+        if (!User::where('email', 'admin@gmail.com')->exists()) {
         User::create([
-        'name' => 'Example User',
-        'email' => 'user@example.com',
-        'password' => bcrypt('password'),
+        'name' => 'Admin',
+        'email' => 'admin@gmail.com',
+        'password' => bcrypt('admin@123@'),
          ]);
          }
 

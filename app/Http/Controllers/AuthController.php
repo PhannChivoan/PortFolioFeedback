@@ -9,17 +9,17 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
     public function register(Request $rq){
-        
+         $rq->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|min:6',
+        ]);
         $user = User::create([
             'name' => $rq->name,
             'email' => $rq->email,
             'password' => $rq->password,
         ]);
-        if($user){
-            echo "User Created";
-        }else{
-            echo "User created failed";
-        }
+        return redirect('/');   
     }
     public function login(){
         $attrs = request()->validate([

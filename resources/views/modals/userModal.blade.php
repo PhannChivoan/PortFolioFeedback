@@ -11,10 +11,16 @@
       <label>email</label>
       <input type="email" name="email" class="form-control">
     </div>
+    @error('email')
+    <p class="text-red-500">{{ $message }}</p>
+    @enderror
     <div class="mb-3">
       <label>password</label>
       <input type="text" name="password" class="form-control">
     </div>
+     @error('password')
+    <p class="text-red-500">{{ $message }}</p>
+    @enderror
     @slot('footer')
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
       <button type="submit" class="btn btn-primary">Create</button>

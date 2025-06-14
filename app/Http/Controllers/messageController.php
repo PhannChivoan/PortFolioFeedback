@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 use App\Models\Message;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 class messageController extends Controller
 {
     public function store(Request $rq){
@@ -16,7 +18,8 @@ class messageController extends Controller
     }
     public function showMessage(){
         $message = Message::all();
-        return view('Admin.message',['msg'=>$message]);
+        $user = Auth::user();
+        return view('Admin.message',['msg'=>$message,'user'=>$user]);
     }
     public function updateMessage(Request $rq){
         $msg = Message::find($rq->id);

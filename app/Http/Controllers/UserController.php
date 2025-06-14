@@ -8,9 +8,15 @@ class UserController extends Controller
 {
     public function showUser(){
         $users = User::all();
-        return view('Admin.user',['users'=>$users]);
+        $user = auth()->user(); 
+        return view('Admin.user',['users'=>$users,'user'=>$user]);
     }
     public function store(Request $rq){
+         $rq->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|min:6',
+        ]);
         $ins = User::create([
             'name'=> $rq->name,
             'email'=> $rq->email,

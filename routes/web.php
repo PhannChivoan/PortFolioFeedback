@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\messageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 
 
 
@@ -13,6 +14,7 @@ Route::get('/', function () {
 Route::get('/register', function () {
     return view('Auth.register');
 });
+Route::post('/register_now',[AuthController::class,'register']);
 
 Route::post('/login_now',[AuthController::class,'login']);
 Route::post('/logout',[AuthController::class,'destroy']);
@@ -20,9 +22,7 @@ Route::post('/logout',[AuthController::class,'destroy']);
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/home', function () {
-        return view('Admin.home');
-    });
+    Route::get('/home',[HomeController::class,'home']);
     Route::get('/user',[UserController::class,'showUser']);
     Route::post('/user/adduser',[UserController::class,'store']);
     Route::post('/update_user', [UserController::class, 'updateUser']);
@@ -36,6 +36,6 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::post('/register_now',[AuthController::class,'register']);
+
     
 });

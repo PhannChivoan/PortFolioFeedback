@@ -11,7 +11,7 @@
       Add User
     </button>
   </div>
-
+<div class="table-responsive">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -23,22 +23,35 @@
     </thead>
     <tbody>
       <?php $i=1 ?>
-      @foreach ($users as $user)
-      <tr>
-        <td class="d-none">{{ $user->id }}</td>
-        <td>{{$i++}}</td>
-        <td>{{ $user->name }}</td>
-        <td>{{ $user->email }}</td>
-        <td>
-          <button type="button" class="btn p-0 border-0 btn-edit" style="outline: none;">
-            <i class="fas fa-pen-to-square text-primary fs-5"></i>
-          </button>
-        </td>
-      </tr>
-      @endforeach
+<?php $i = 1; ?>
+@foreach ($users as $row)
+<tr>
+  <td class="d-none">{{ $row->id }}</td>
+  <td>{{ $i++ }}</td>
+  <td>{{ $row->name }}</td>
+  <td>{{ $row->email }}</td>
+  <td>
+    @if ($user->email == 'admin@gmail.com')
+      <button type="button" class="btn p-0 border-0 btn-edit" style="outline: none;">
+        <i class="fas fa-pen-to-square text-primary fs-5"></i>
+      </button>
+    @else
+      @if ($row->email == 'admin@gmail.com')
+        <button type="button" class="btn p-0 border-0 btn-edit" style="outline: none; opacity: 0.5; cursor: not-allowed;" disabled>
+          <i class="fas fa-pen-to-square text-primary fs-5"></i>
+        </button>
+      @else
+        <button type="button" class="btn p-0 border-0 btn-edit" style="outline: none;">
+          <i class="fas fa-pen-to-square text-primary fs-5"></i>
+        </button>
+      @endif
+    @endif
+  </td>
+</tr>
+@endforeach
     </tbody>
   </table>
-
+</div>
 </x-layout>
 @include('modals.userModal')
 
