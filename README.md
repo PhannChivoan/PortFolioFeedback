@@ -12,7 +12,7 @@ User CRUD operations (Create, Read, Update, Delete) using AJAX for seamless expe
 Project Status
 This is a small, incomplete project at the moment, built to test and demonstrate API integration, user management, and dashboard functionality. While it’s not fully developed, it lays the groundwork for a more complex system I plan to build.
 
-🔭 Future Plans
+Future Plans
 Expand this dashboard to serve as the backend for a React-based blog website.
 
 Add advanced user roles and permission control.
