@@ -55,6 +55,19 @@
                 <span class="hide-menu">User</span>
               </a>
             </li>
+
+            <li class="sidebar-item">
+              <a class="text-danger primary-hover-bg text-danger" href="/logout" 
+              onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+              class="logout-link">
+              <iconify-icon icon="solar:logout-line-duotone" width="24" height="24"></iconify-icon>
+              Logout
+            </a>
+
+            <form id="logout-form" action="/logout" method="POST" style="display: none;">
+              @csrf
+            </form>
+            </li>
             
           </ul>
         </nav>
@@ -111,7 +124,7 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link " href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                       aria-expanded="false">
-                      <img src="{{ asset('assets/images/profile/mine.jpg') }}" width="60" height="60" class="rounded-circle">
+                     <img src="{{ asset('assets/images/profile/mine.jpg') }}" width="60" height="60" class="rounded-circle">
 
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
